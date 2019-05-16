@@ -1,0 +1,79 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.211.55.5:3306/wms?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    druid:
+      validationQuery: SELECT 1
+      initialSize: 10
+      minIdle: 10
+      maxActive: 200
+      minEvictableIdleTimeMillis: 180000
+      testOnBorrow: false
+      testWhileIdle: true
+      removeAbandoned: true
+      removeAbandonedTimeout: 1800
+      logAbandoned: true
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 100
+      filter:
+        stat:
+          enabled: true
+      filters:
+        - stat
+#        - log4j
+#      useGlobalDataSourceStat: true
+#      web-stat-filter:
+#        enabled: true
+#        url-pattern: "/*"
+#        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 10.211.55.5:6379
+    password: 123456
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 18
+        min-idle: 0
+        max-wait: -1
+    timeout: 0
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+
+#      - stat
+#      - wall
+#      - log4j
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    mapper-locations: classpath:mapper/*.xml
+
+### 配置shiro 加密算法，加密迭代次数
+shiro:
+  algorithmName: SHA-1
+  iterations: 1024
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/xml/*.xml
+  typeAliasesPackage: com.xc.wms.entity
+  global-config:
+    id-type: 2
+    field-strategy: 2
+    auto-set-db-type: true
+    db-column-underline: true
+    refresh-mapper: true
+#    metaObjectHandler: com.slife.config.plus.SysMetaObjectHandler
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+debug: true
+
+
+management:
+  security:
+    enabled: false
+

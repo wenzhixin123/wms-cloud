@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.wms.mapper.SysMenuGroupMapper">
+
+    <select id="getMenuByUser" resultMap="SysMenuGroupResultMap">
+select smg.SYS_MENU_GROUP_UUID,smg.PRE_SYS_MENU_GROUP_UUID , smg.MENU_GRP_NAME , smg.MENU_GRP_CODE, smi.SYS_MENU_ITEM_UUID,smi.MENU_ITEM_CODE,smi.MENU_ITEM_URL,smi.MENU_ITEM_NAME,sr.ROLE_NAME
+from
+sys_menu_group smg,
+sys_menu_item smi,
+sys_role_menu_item srmi,
+sys_role sr,
+sys_role_user sru
+where smg.SYS_MENU_GROUP_UUID = smi.SYS_MENU_GROUP_UUID
+and (smg.PRE_SYS_MENU_GROUP_UUID is null or smg.PRE_SYS_MENU_GROUP_UUID = '')
+and srmi.SYS_MENU_ITEM_UUID = smi.SYS_MENU_ITEM_UUID
+and sr.SYS_ROLE_UUID = srmi.SYS_ROLE_UUID
+and sr.SYS_ROLE_UUID = sru.SYS_ROLE_UUID
+and sru.USER_UUID =#{userId}
+order by smg.MENU_GRP_CODE, smg.MENU_GRP_NAME
+    </select>
+    
+    <resultMap id="SysMenuGroupResultMap" type="com.xc.wms.entity.SysMenuGroup" autoMapping="true">
+        <id property="sysMenuGroupUuid" column="SYS_MENU_GROUP_UUID"></id>
+        <collection property="sysMenuItemList" ofType="com.xc.wms.entity.SysMenuItem" autoMapping="true">
+            <id property="sysMenuItemUuid" column="SYS_MENU_ITEM_UUID"></id>
+        </collection>
+    </resultMap>
+
+</mapper>
