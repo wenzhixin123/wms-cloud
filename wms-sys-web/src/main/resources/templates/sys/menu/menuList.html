@@ -15,11 +15,11 @@
 <body>
 <div  class="layui-col-md13">
     <div class="layui-btn-group">
-      <@shiro.hasPermission name="nemu:add">
+      <!--<@shiro.hasPermission name="nemu:add">-->
         <button class="layui-btn layui-btn-normal" data-type="add">
             <i class="layui-icon">&#xe608;</i>新增
         </button>
-      </@shiro.hasPermission>
+      <!--</@shiro.hasPermission>-->
     </div>
     <button class="layui-btn layui-btn-sm icon-position-no-button" id="refresh" style="float: right;" onclick="javascript:location.replace(location.href);">
       <i class="layui-icon i-icon" style="font-size: 21px">ဂ</i>
@@ -27,8 +27,14 @@
   </div>
 <div id="menuTree"></div>
 </body>
-<script type="text/javascript" src="${re.contextPath}/plugin/layuitree/layui/layui.js" charset="utf-8"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:src="@{/plugin/layuitree/layui/layui.js}" charset="utf-8"></script>
+<script type="text/javascript" th:inline="javascript">
+    var menus = [[${menus}]];
+</script>
+
+
+
+<script type="text/javascript" th:inline="none">
   function select(nodeId) {
     console.info(nodeId);
     alert(nodeId)
@@ -52,7 +58,7 @@
       }
     }, { name: '类型',headerClass: 'value_col', colClass: 'value_col', style: 'width: 10%',
       render: function(row) {
-        return '<div class="layui-table-cell laytable-cell-1-username">'+(row.menuType=="1"?'按钮':'菜单')+'</div>'; //列渲染
+        return '<div class="layui-table-cell laytable-cell-1-username">'+(row.menuType=="0"?'菜单组':'1'?'菜单':'2'?'按钮':'')+'</div>'; //列渲染
       }
     }, { name: '权限',headerClass: 'value_col', colClass: 'value_col', style: 'width: 10%',
       render: function(row) {
@@ -86,23 +92,26 @@
   ];
 
   layui.use(['tree', 'layer'], function() {
-    var layer = layui.layer;
+      var layer = layui.layer;
+      var nodes = JSON.parse(menus);
 
-    layui.treeGird({
-      elem: '#menuTree',
-      nodes:${menus},
-      layout: layout
-    });
-    var $ = layui.$, active = {
-        add: function () {
-            add('添加菜单', 'showAddMenu', 700, 550);
-        }
-    }
-    $('.layui-btn-group .layui-btn').on('click', function () {
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-    });
+      layui.treeGird({
+          elem: '#menuTree',
+          nodes:nodes,
+          layout: layout
+      });
+      var $ = layui.$, active = {
+          add: function () {
+              add('添加菜单', 'showAddMenu', 700, 550);
+          }
+      }
+      $('.layui-btn-group .layui-btn').on('click', function () {
+          var type = $(this).data('type');
+          active[type] ? active[type].call(this) : '';
+      });
   });
+
+
   function add(title, url, w, h) {
       if (title == null || title == '') {
           title = false;

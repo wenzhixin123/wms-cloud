@@ -1,17 +1,16 @@
-package com.xc.wms.entity;
+package com.xc.wms.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-
-import java.util.ArrayList;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import java.util.List;
-
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -24,7 +23,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysMenuItem implements Serializable {
+public class SysMenuItemDto implements Serializable {
 
 private static final long serialVersionUID=1L;
 
@@ -142,7 +141,7 @@ private static final long serialVersionUID=1L;
     @TableField("MODIFY_TIME")
     private Date modifyTime;
 
-    transient private List<Object> children=new ArrayList<Object>();
+    private List<Object> children=new ArrayList<Object>();
 
     public void addChild(Object child){
         children.add(child);

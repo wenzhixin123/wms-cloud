@@ -1,5 +1,6 @@
 package com.xc.wms.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.xc.wms.entity.SysMenuGroup;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,4 +17,6 @@ import java.util.List;
 public interface ISysMenuGroupService extends IService<SysMenuGroup> {
 
     List<SysMenuGroup> getMenuByUser(String userId);
+
+    JSONArray getMenuJsonList();
 }

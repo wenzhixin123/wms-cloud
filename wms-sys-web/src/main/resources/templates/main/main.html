@@ -73,7 +73,7 @@
 
             <dl class="layui-nav-child" th:each="menuItem : ${menu.sysMenuItemList}">
               <dd>
-                <a href="javascript:;" kit-target th:data-options="'{url:\''+${menuItem.menuItemUrl}+'\',icon:\''+'&#xe6b8;'+'\',title:\''+${menuItem.menuItemName}+'\',id:\''+'1'+'\'}'">
+                <a href="javascript:;" kit-target th:data-options="'{url:\''+${menuItem.menuItemUrl}+'\',icon:\''+'&#xe6b8;'+'\',title:\''+${menuItem.menuItemName}+'\',id:\''+${menuItem.sysMenuItemUuid}+'\'}'">
                   <i class="layui-icon" >&#xe630;</i>
                   <span th:text="${menuItem.menuItemName}"> 菜单项</span>
                 </a>

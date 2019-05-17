@@ -1,5 +1,6 @@
 package com.xc.wms.sys;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -43,6 +44,12 @@ public class WmsSysWebApplicationTests {
         System.out.println(menuByUser);
     }
 
+    @Test
+    public void getMenuGrpTree(){
+        JSONArray menuJsonList = iSysMenuGroupService.getMenuJsonList();
+        System.out.println(menuJsonList);
+
+    }
 
 
     @Transactional(rollbackFor = Exception.class)

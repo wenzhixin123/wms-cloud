@@ -1,32 +1,22 @@
-package com.xc.wms.entity;
+package com.xc.wms.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-
-import java.util.ArrayList;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import java.util.List;
-
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.xc.wms.entity.SysMenuItem;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-/**
- * <p>
- * 菜单分组
- * </p>
- *
- * @author wenzhixin
- * @since 2019-04-30
- */
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysMenuGroup implements Serializable {
-
-private static final long serialVersionUID=1L;
+public class SysMenuGroupDto implements Serializable {
 
     /**
      * 一级菜单UUID
@@ -121,12 +111,14 @@ private static final long serialVersionUID=1L;
     @TableField("MODIFY_TIME")
     private Date modifyTime;
 
-    transient public List<SysMenuItem> sysMenuItemList;
+    public List<SysMenuItem> sysMenuItemList;
 
-    transient private List<Object> children=new ArrayList<Object>();
+    private List<Object> children=new ArrayList<Object>();
 
     public void addChild(Object child){
         children.add(child);
     }
+
+
 
 }
