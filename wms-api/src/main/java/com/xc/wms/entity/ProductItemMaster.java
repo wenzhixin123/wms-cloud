@@ -1,13 +1,13 @@
 package com.xc.wms.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -15,12 +15,12 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author wenzhixin
- * @since 2019-04-30
+ * @since 2019-05-20
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class ProductItemMaster implements Serializable {
+public class ProductItemMaster extends BaseEntity {
 
 private static final long serialVersionUID=1L;
 
@@ -145,7 +145,7 @@ private static final long serialVersionUID=1L;
      * 访问并发控制
      */
     @TableField("Rec_Ver")
-    private String recVer;
+    private Long recVer;
 
     /**
      * 创建人

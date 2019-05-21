@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.BasBlob;
 import com.xc.wms.mapper.BasBlobMapper;
-import com.xc.wms.service.IBasBlobService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class BasBlobServiceImpl extends ServiceImpl<BasBlobMapper, BasBlob> implements IBasBlobService {
+public class BasBlobServiceImpl extends ServiceImpl<BasBlobMapper, BasBlob> implements IService<BasBlob> {
 
 }

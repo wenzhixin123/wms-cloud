@@ -1,13 +1,13 @@
 package com.xc.wms.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -15,12 +15,12 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author wenzhixin
- * @since 2019-04-30
+ * @since 2019-05-20
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class TranferOrder implements Serializable {
+public class TranferOrder extends BaseEntity {
 
 private static final long serialVersionUID=1L;
 
@@ -125,24 +125,6 @@ private static final long serialVersionUID=1L;
      */
     @TableField("AUX5")
     private String aux5;
-
-    /**
-     * 仓库代码
-     */
-    @TableField("OFFICE_CODE")
-    private String officeCode;
-
-    /**
-     * 创建时间
-     */
-    @TableField("CREATE_TIME")
-    private Date createTime;
-
-    /**
-     * 创建人
-     */
-    @TableField("CREATOR")
-    private String creator;
 
     /**
      * 修改时间

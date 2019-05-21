@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.BasPanelType;
 import com.xc.wms.mapper.BasPanelTypeMapper;
-import com.xc.wms.service.IBasPanelTypeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class BasPanelTypeServiceImpl extends ServiceImpl<BasPanelTypeMapper, BasPanelType> implements IBasPanelTypeService {
+public class BasPanelTypeServiceImpl extends ServiceImpl<BasPanelTypeMapper, BasPanelType> implements IService<BasPanelType> {
 
 }

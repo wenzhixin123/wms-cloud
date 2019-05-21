@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.LocPlanConfig;
 import com.xc.wms.mapper.LocPlanConfigMapper;
-import com.xc.wms.service.ILocPlanConfigService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class LocPlanConfigServiceImpl extends ServiceImpl<LocPlanConfigMapper, LocPlanConfig> implements ILocPlanConfigService {
+public class LocPlanConfigServiceImpl extends ServiceImpl<LocPlanConfigMapper, LocPlanConfig> implements IService<LocPlanConfig> {
 
 }

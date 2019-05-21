@@ -30,6 +30,7 @@
 <script type="text/javascript" th:src="@{/plugin/layuitree/layui/layui.js}" charset="utf-8"></script>
 <script type="text/javascript" th:inline="javascript">
     var menus = [[${menus}]];
+    var nodes = JSON.parse(menus);
 </script>
 
 
@@ -93,7 +94,7 @@
 
   layui.use(['tree', 'layer'], function() {
       var layer = layui.layer;
-      var nodes = JSON.parse(menus);
+
 
       layui.treeGird({
           elem: '#menuTree',

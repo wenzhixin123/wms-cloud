@@ -4,20 +4,18 @@ import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.common.util.CommonUtils;
-import com.xc.wms.dto.SysMenuGroupDto;
 import com.xc.wms.dto.TreeNode;
 import com.xc.wms.entity.SysMenuGroup;
 import com.xc.wms.entity.SysMenuItem;
 import com.xc.wms.entity.SysViewButton;
 import com.xc.wms.mapper.SysMenuGroupMapper;
-import com.xc.wms.service.ISysMenuGroupService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xc.wms.service.ISysMenuGroupService;
 import com.xc.wms.service.ISysMenuItemService;
 import com.xc.wms.service.ISysViewButtonService;
-import javafx.util.converter.ByteStringConverter;
 import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +32,7 @@ import java.util.stream.Collectors;
  * @since 2019-04-28
  */
 @Service
-public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, SysMenuGroup> implements ISysMenuGroupService {
+public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, SysMenuGroup> implements ISysMenuGroupService{
 
     @Autowired
     private ISysMenuItemService sysMenuItemService;

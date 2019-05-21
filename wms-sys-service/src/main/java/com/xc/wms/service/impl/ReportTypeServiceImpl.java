@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.ReportType;
 import com.xc.wms.mapper.ReportTypeMapper;
-import com.xc.wms.service.IReportTypeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class ReportTypeServiceImpl extends ServiceImpl<ReportTypeMapper, ReportType> implements IReportTypeService {
+public class ReportTypeServiceImpl extends ServiceImpl<ReportTypeMapper, ReportType> implements IService<ReportType> {
 
 }

@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.TranferOrderDetail;
 import com.xc.wms.mapper.TranferOrderDetailMapper;
-import com.xc.wms.service.ITranferOrderDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class TranferOrderDetailServiceImpl extends ServiceImpl<TranferOrderDetailMapper, TranferOrderDetail> implements ITranferOrderDetailService {
+public class TranferOrderDetailServiceImpl extends ServiceImpl<TranferOrderDetailMapper, TranferOrderDetail> implements IService<TranferOrderDetail> {
 
 }

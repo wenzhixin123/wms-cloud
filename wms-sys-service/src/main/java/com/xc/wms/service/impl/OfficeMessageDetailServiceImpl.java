@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.OfficeMessageDetail;
 import com.xc.wms.mapper.OfficeMessageDetailMapper;
-import com.xc.wms.service.IOfficeMessageDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class OfficeMessageDetailServiceImpl extends ServiceImpl<OfficeMessageDetailMapper, OfficeMessageDetail> implements IOfficeMessageDetailService {
+public class OfficeMessageDetailServiceImpl extends ServiceImpl<OfficeMessageDetailMapper, OfficeMessageDetail> implements IService<OfficeMessageDetail> {
 
 }

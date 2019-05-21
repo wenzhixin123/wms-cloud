@@ -1,18 +1,15 @@
 package com.xc.wms.sys;
 
 import com.alibaba.fastjson.JSONArray;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xc.wms.entity.SysMenuGroup;
 import com.xc.wms.entity.SysRoleUser;
 import com.xc.wms.entity.SysUser;
 import com.xc.wms.service.ISysMenuGroupService;
-import com.xc.wms.service.ISysRoleMenuItemService;
 import com.xc.wms.service.ISysRoleUserService;
 import com.xc.wms.service.ISysUserService;
 import org.junit.Test;

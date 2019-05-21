@@ -66,7 +66,7 @@ mybatis-plus:
     auto-set-db-type: true
     db-column-underline: true
     refresh-mapper: true
-#    metaObjectHandler: com.slife.config.plus.SysMetaObjectHandler
+#    metaObjectHandler: com.xc.wms.sys.config.plus.MyMetaObjectHandler
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
@@ -76,4 +76,6 @@ debug: true
 management:
   security:
     enabled: false
-
+#server:
+#  servlet:
+#    context-path: /wms

@@ -11,8 +11,10 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.xc.wms.entity.BaseEntity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -123,12 +125,17 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-//        strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
+        strategy.setSuperEntityColumns(new String[]{"OFFICE_CODE","REC_VER","CREATOR","CREATE_TIME","MODIFIER","MODIFY_TIME"});
+//        strategy.setSuperEntityColumns(new String[]{"officeCode","recVer","creator","createTime","modifier","modifyTime"});
+        strategy.setSuperEntityClass("com.xc.wms.entity.BaseEntity");
+        strategy.setSuperEntityClass(BaseEntity.class);
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
-        strategy.setSuperEntityColumns("id");
+//        strategy.setSuperEntityColumns("id");
+        strategy.setSuperEntityColumns(new String[]{"OFFICE_CODE","REC_VER","CREATOR","CREATE_TIME","MODIFIER","MODIFY_TIME"});
+
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

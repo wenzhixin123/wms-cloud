@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.SubmitOrderLog;
 import com.xc.wms.mapper.SubmitOrderLogMapper;
-import com.xc.wms.service.ISubmitOrderLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class SubmitOrderLogServiceImpl extends ServiceImpl<SubmitOrderLogMapper, SubmitOrderLog> implements ISubmitOrderLogService {
+public class SubmitOrderLogServiceImpl extends ServiceImpl<SubmitOrderLogMapper, SubmitOrderLog> implements IService<SubmitOrderLog> {
 
 }

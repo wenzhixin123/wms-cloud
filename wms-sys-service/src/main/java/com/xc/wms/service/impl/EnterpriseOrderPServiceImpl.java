@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.EnterpriseOrderP;
 import com.xc.wms.mapper.EnterpriseOrderPMapper;
-import com.xc.wms.service.IEnterpriseOrderPService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class EnterpriseOrderPServiceImpl extends ServiceImpl<EnterpriseOrderPMapper, EnterpriseOrderP> implements IEnterpriseOrderPService {
+public class EnterpriseOrderPServiceImpl extends ServiceImpl<EnterpriseOrderPMapper, EnterpriseOrderP> implements IService<EnterpriseOrderP> {
 
 }

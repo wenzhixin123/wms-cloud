@@ -1,9 +1,10 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.SysMenuItem;
 import com.xc.wms.mapper.SysMenuItemMapper;
-import com.xc.wms.service.ISysMenuItemService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xc.wms.service.ISysMenuItemService;
 import org.springframework.stereotype.Service;
 
 /**

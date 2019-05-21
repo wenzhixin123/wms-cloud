@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.ScrapOrderDetail;
 import com.xc.wms.mapper.ScrapOrderDetailMapper;
-import com.xc.wms.service.IScrapOrderDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class ScrapOrderDetailServiceImpl extends ServiceImpl<ScrapOrderDetailMapper, ScrapOrderDetail> implements IScrapOrderDetailService {
+public class ScrapOrderDetailServiceImpl extends ServiceImpl<ScrapOrderDetailMapper, ScrapOrderDetail> implements IService<ScrapOrderDetail> {
 
 }

@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.ExpressAccountRuleDetail;
 import com.xc.wms.mapper.ExpressAccountRuleDetailMapper;
-import com.xc.wms.service.IExpressAccountRuleDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class ExpressAccountRuleDetailServiceImpl extends ServiceImpl<ExpressAccountRuleDetailMapper, ExpressAccountRuleDetail> implements IExpressAccountRuleDetailService {
+public class ExpressAccountRuleDetailServiceImpl extends ServiceImpl<ExpressAccountRuleDetailMapper, ExpressAccountRuleDetail> implements IService<ExpressAccountRuleDetail> {
 
 }

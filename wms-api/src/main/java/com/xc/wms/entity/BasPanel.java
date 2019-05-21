@@ -1,10 +1,8 @@
 package com.xc.wms.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -15,12 +13,12 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author wenzhixin
- * @since 2019-04-30
+ * @since 2019-05-20
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class BasPanel implements Serializable {
+public class BasPanel extends BaseEntity {
 
 private static final long serialVersionUID=1L;
 
@@ -83,42 +81,6 @@ private static final long serialVersionUID=1L;
      */
     @TableField("REMARK")
     private String remark;
-
-    /**
-     * 公司（仓库）代码
-     */
-    @TableField("OFFICE_CODE")
-    private String officeCode;
-
-    /**
-     * 并发访问控制
-     */
-    @TableField("REC_VER")
-    private Long recVer;
-
-    /**
-     * 创建人
-     */
-    @TableField("CREATOR")
-    private String creator;
-
-    /**
-     * 创建时间
-     */
-    @TableField("CREATE_TIME")
-    private Date createTime;
-
-    /**
-     * 修改人
-     */
-    @TableField("MODIFIER")
-    private String modifier;
-
-    /**
-     * 修改时间
-     */
-    @TableField("MODIFY_TIME")
-    private Date modifyTime;
 
 
 }

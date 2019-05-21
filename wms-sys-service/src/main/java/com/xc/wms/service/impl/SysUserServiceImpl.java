@@ -4,27 +4,23 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.common.util.CommonUtils;
 import com.xc.wms.common.util.ReType;
 import com.xc.wms.entity.SysMenuGroup;
-import com.xc.wms.entity.SysRoleUser;
 import com.xc.wms.entity.SysUser;
 import com.xc.wms.mapper.SysUserMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xc.wms.service.ISysMenuGroupService;
 import com.xc.wms.service.ISysUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Wrapper;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>

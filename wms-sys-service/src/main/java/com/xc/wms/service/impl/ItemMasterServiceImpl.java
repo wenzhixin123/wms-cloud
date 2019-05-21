@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.ItemMaster;
 import com.xc.wms.mapper.ItemMasterMapper;
-import com.xc.wms.service.IItemMasterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class ItemMasterServiceImpl extends ServiceImpl<ItemMasterMapper, ItemMaster> implements IItemMasterService {
+public class ItemMasterServiceImpl extends ServiceImpl<ItemMasterMapper, ItemMaster> implements IService<ItemMaster> {
 
 }

@@ -1,8 +1,8 @@
 package com.xc.wms.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.entity.QrtzPausedTriggerGrps;
 import com.xc.wms.mapper.QrtzPausedTriggerGrpsMapper;
-import com.xc.wms.service.IQrtzPausedTriggerGrpsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-28
  */
 @Service
-public class QrtzPausedTriggerGrpsServiceImpl extends ServiceImpl<QrtzPausedTriggerGrpsMapper, QrtzPausedTriggerGrps> implements IQrtzPausedTriggerGrpsService {
+public class QrtzPausedTriggerGrpsServiceImpl extends ServiceImpl<QrtzPausedTriggerGrpsMapper, QrtzPausedTriggerGrps> implements IService<QrtzPausedTriggerGrps> {
 
 }

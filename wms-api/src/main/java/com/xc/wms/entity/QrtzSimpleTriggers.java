@@ -1,9 +1,8 @@
 package com.xc.wms.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -14,12 +13,12 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author wenzhixin
- * @since 2019-04-30
+ * @since 2019-05-20
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class QrtzSimpleTriggers implements Serializable {
+public class QrtzSimpleTriggers extends BaseEntity {
 
 private static final long serialVersionUID=1L;
 
