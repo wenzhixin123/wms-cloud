@@ -1,6 +1,7 @@
 package com.xc.wms.service;
 
 import com.alibaba.fastjson.JSONArray;
+import com.xc.wms.common.util.TreeNode;
 import com.xc.wms.entity.SysMenuGroup;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -19,4 +20,7 @@ public interface ISysMenuGroupService extends IService<SysMenuGroup> {
     List<SysMenuGroup> getMenuByUser(String userId);
 
     JSONArray getMenuJsonList();
+
+    boolean addMenuGrpAndItemBtn(TreeNode treeNode);
+
 }

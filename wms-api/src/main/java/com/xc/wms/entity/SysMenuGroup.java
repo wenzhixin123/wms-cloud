@@ -70,6 +70,12 @@ private static final long serialVersionUID=1L;
     private String remark;
 
     /**
+     * 图标
+     */
+    @TableField("ICON")
+    private String icon;
+
+    /**
      * 状态：Active - 有效； Cancel - 作废
      */
     @TableField("STATUS")

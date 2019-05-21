@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xc.wms.common.util.CommonUtils;
-import com.xc.wms.dto.TreeNode;
+import com.xc.wms.common.util.TreeNode;
 import com.xc.wms.entity.SysMenuGroup;
 import com.xc.wms.entity.SysMenuItem;
 import com.xc.wms.entity.SysViewButton;
@@ -60,7 +60,7 @@ public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, Sys
         //2. 排除所有顶级菜单组 , 剩下的是次级菜单组
         sysMenuGroups.removeAll(topMenuGrp);
         //3. 根据顶级组查找次级菜单组和次级菜单
-        topMenuGrp.sort(Comparator.comparing(SysMenuGroup::getMenuGrpCode));
+        topMenuGrp.sort(Comparator.comparing(SysMenuGroup::getMenuGrpName));
         //4. 迭代获取当前顶级菜单的节点树
         JSONArray jsonArr = new JSONArray();
         int i = 0;
@@ -82,30 +82,45 @@ public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, Sys
         return jsonArr;
     }
 
+    @Override
+    public boolean addMenuGrpAndItemBtn(TreeNode treeNode) {
+        //1.根据当前节点类型判断，0 菜单组，1，菜单项，2 按钮 进行分别保存菜单组，菜单项，按钮
+        if(StringUtils.isEmpty(treeNode.getMenuType())) throw new IllegalArgumentException("请选择菜单类型");
+        SysMenuGroup sysMenuGroup = null;
+        SysMenuItem sysMenuItem = null;
+        SysViewButton sysViewButton = null;
+
+        switch (treeNode.getMenuType()){
+            case CommonUtils.SYS_MENU_GRP_TYPE : sysMenuGroup = converTreeNode2MenuGrp(new SysMenuGroup(),treeNode); break;
+            case CommonUtils.SYS_MENU_ITEM_TYPE : sysMenuItem = converTreeNode2MenuItem(new SysMenuItem(),treeNode); break;
+            case CommonUtils.SYS_MENU_BTN_TYPE : sysViewButton = converTreeNode2Btn(new SysViewButton(),treeNode); break;
+        }
+        if(sysMenuGroup != null){
+           return this.save(sysMenuGroup);
+        }
+        if(sysMenuItem != null){
+           return sysMenuItemService.save(sysMenuItem);
+        }
+        if(sysViewButton != null){
+            return sysViewButtonService.save(sysViewButton);
+        }
+        return false;
+    }
 
     private TreeNode childMenuGrp(SysMenuGroup sysMenuGrp,List<SysMenuGroup> allSysMenuGrps) {
 
-        TreeNode treeNode = new TreeNode();
+//        TreeNode treeNode = new TreeNode();
+//
+//        treeNode.setId(sysMenuGrp.getSysMenuGroupUuid())
+//                .setIcon("")
+//                .setName(sysMenuGrp.getMenuGrpName())
+//                .setMenuType(CommonUtils.SYS_MENU_GRP_TYPE)
+//                .setNum(0)
+//                .setOrderNum(sysMenuGrp.getMenuGrpSeq() != null ? sysMenuGrp.getMenuGrpSeq().intValue() : 0)
+//                .setPId(sysMenuGrp.getPreSysMenuGroupUuid());
 
-        treeNode.setId(sysMenuGrp.getSysMenuGroupUuid())
-                .setIcon("")
-                .setName(sysMenuGrp.getMenuGrpName())
-                .setMenuType(CommonUtils.SYS_MENU_GRP_TYPE)
-                .setNum(0)
-                .setOrderNum(sysMenuGrp.getMenuGrpSeq() != null ? sysMenuGrp.getMenuGrpSeq().intValue() : 0)
-                .setPId(sysMenuGrp.getPreSysMenuGroupUuid());
+        TreeNode treeNode = converMenuGrp2TreeNode(sysMenuGrp,new TreeNode());
 
-
-//        List<SysMenu> childSysMenu = sysMenus.stream().filter(s ->
-//                s.getPId().equals(sysMenu.getId())).collect(Collectors.toList());
-//        sysMenus.removeAll(childSysMenu);
-//        SysMenu m;
-//        for (SysMenu menu : childSysMenu) {
-//            ++num;
-//            m = child(menu, sysMenus, pNum, num);
-//            sysMenu.addChild(menu);
-//        }
-//        return sysMenu;
         //1. 筛选当前菜单组节点下面，所有的子菜单组
         List<SysMenuGroup> childMenuGrps = allSysMenuGrps.stream().filter(s -> s.getPreSysMenuGroupUuid().equals(sysMenuGrp.getSysMenuGroupUuid())).collect(Collectors.toList());
 
@@ -117,17 +132,19 @@ public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, Sys
         //3.设置当前菜单组下的所有菜单节点
         if(CollectionUtils.isNotEmpty(sysMenuItems)){
             for(SysMenuItem var : sysMenuItems){
+//
+//                TreeNode itemNode = new TreeNode();
+//
+//                itemNode.setId(var.getSysMenuItemUuid())
+//                        .setIcon("")
+//                        .setName(var.getMenuItemName())
+//                        .setMenuType(CommonUtils.SYS_MENU_ITEM_TYPE)
+//                        .setNum(0)
+//                        .setOrderNum(var.getMenuItemSeq() != null ? var.getMenuItemSeq().intValue() : 0)
+//                        .setPId(var.getSysMenuGroupUuid())
+//                        .setUrl(var.getMenuItemUrl());
 
-                TreeNode itemNode = new TreeNode();
-
-                itemNode.setId(var.getSysMenuItemUuid())
-                        .setIcon("")
-                        .setName(var.getMenuItemName())
-                        .setMenuType(CommonUtils.SYS_MENU_ITEM_TYPE)
-                        .setNum(0)
-                        .setOrderNum(var.getMenuItemSeq() != null ? var.getMenuItemSeq().intValue() : 0)
-                        .setPId(var.getSysMenuGroupUuid())
-                        .setUrl(var.getMenuItemUrl());
+                TreeNode itemNode = converMenuItem2TreeNode(var,new TreeNode());
 
 
 
@@ -139,16 +156,19 @@ public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, Sys
                 if(CollectionUtils.isNotEmpty(sysMenuBtns)){
                     for(SysViewButton buttnVar : sysMenuBtns){
 
-                        TreeNode btNode = new TreeNode();
+//                        TreeNode btNode = new TreeNode();
+//
+//                        btNode.setId(buttnVar.getSysViewButtonUuid())
+//                                .setIcon("")
+//                                .setName(buttnVar.getBtnName())
+//                                .setMenuType(CommonUtils.SYS_MENU_BTN_TYPE)
+//                                .setNum(0)
+////                                .setOrderNum(buttnVar.get)
+//                                .setPId(buttnVar.getSysMenuItemUuid())
+//                                .setPermission(buttnVar.getBtnAction());
 
-                        btNode.setId(buttnVar.getSysViewButtonUuid())
-                                .setIcon("")
-                                .setName(buttnVar.getBtnName())
-                                .setMenuType(CommonUtils.SYS_MENU_BTN_TYPE)
-                                .setNum(0)
-//                                .setOrderNum(buttnVar.get)
-                                .setPId(buttnVar.getSysMenuItemUuid())
-                                .setPermission(buttnVar.getBtnAction());
+                        TreeNode btNode = converBtn2TreeNode(buttnVar,new TreeNode());
+
 
 //                        var.addChild(buttnVar);
                         itemNode.addChild(btNode);
@@ -170,4 +190,73 @@ public class SysMenuGroupServiceImpl extends ServiceImpl<SysMenuGroupMapper, Sys
 
         return treeNode;
     }
+
+
+
+    private SysViewButton converTreeNode2Btn(SysViewButton sysViewButton, TreeNode treeNode) {
+        sysViewButton.setSysViewButtonUuid(treeNode.getId())
+                .setIcon(treeNode.getIcon())
+                .setBtnName(treeNode.getName())
+                .setSysMenuItemUuid(treeNode.getPId())
+                .setViewBtnSeq(treeNode.getOrderNum().doubleValue())
+                .setBtnAction(treeNode.getPermission());
+        return sysViewButton;
+    }
+
+    private SysMenuItem converTreeNode2MenuItem(SysMenuItem sysMenuItem, TreeNode treeNode) {
+        sysMenuItem.setSysMenuItemUuid(treeNode.getId())
+                .setIcon(treeNode.getIcon())
+                .setMenuItemName(treeNode.getName())
+                .setMenuItemSeq(treeNode.getOrderNum().doubleValue())
+                .setSysMenuGroupUuid(treeNode.getPId())
+                .setMenuItemUrl(treeNode.getUrl());
+        return sysMenuItem;
+    }
+
+    private SysMenuGroup converTreeNode2MenuGrp(SysMenuGroup sysMenuGrp,TreeNode treeNode){
+        sysMenuGrp.setSysMenuGroupUuid(treeNode.getId())
+                .setIcon(treeNode.getIcon())
+                .setMenuGrpName(treeNode.getName())
+                .setMenuGrpSeq(treeNode.getOrderNum().doubleValue())
+                .setPreSysMenuGroupUuid(treeNode.getPId());
+        return sysMenuGrp;
+    }
+
+    private TreeNode converMenuGrp2TreeNode(SysMenuGroup sysMenuGrp,TreeNode treeNode){
+
+        treeNode.setId(sysMenuGrp.getSysMenuGroupUuid())
+                .setIcon("")
+                .setName(sysMenuGrp.getMenuGrpName())
+                .setMenuType(CommonUtils.SYS_MENU_GRP_TYPE)
+                .setNum(0)
+                .setOrderNum(sysMenuGrp.getMenuGrpSeq() != null ? sysMenuGrp.getMenuGrpSeq().intValue() : 0)
+                .setPId(sysMenuGrp.getPreSysMenuGroupUuid());
+        return  treeNode;
+    }
+
+    private TreeNode converMenuItem2TreeNode(SysMenuItem sysMenuItem,TreeNode treeNode){
+
+        treeNode.setId(sysMenuItem.getSysMenuItemUuid())
+                .setIcon("")
+                .setName(sysMenuItem.getMenuItemName())
+                .setMenuType(CommonUtils.SYS_MENU_ITEM_TYPE)
+                .setNum(0)
+                .setOrderNum(sysMenuItem.getMenuItemSeq() != null ? sysMenuItem.getMenuItemSeq().intValue() : 0)
+                .setPId(sysMenuItem.getSysMenuGroupUuid())
+                .setUrl(sysMenuItem.getMenuItemUrl());
+        return treeNode;
+    }
+
+    private TreeNode converBtn2TreeNode(SysViewButton sysViewButton, TreeNode treeNode){
+        treeNode.setId(sysViewButton.getSysViewButtonUuid())
+                .setIcon("")
+                .setName(sysViewButton.getBtnName())
+                .setOrderNum(sysViewButton.getViewBtnSeq() != null ? sysViewButton.getViewBtnSeq().intValue() : 0)
+                .setMenuType(CommonUtils.SYS_MENU_BTN_TYPE)
+                .setNum(0)
+                .setPId(sysViewButton.getSysMenuItemUuid())
+                .setPermission(sysViewButton.getBtnAction());
+        return treeNode;
+    }
+
 }

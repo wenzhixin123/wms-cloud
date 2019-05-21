@@ -83,6 +83,12 @@ private static final long serialVersionUID=1L;
     private Integer isDialog;
 
     /**
+     * 图标
+     */
+    @TableField("ICON")
+    private String icon;
+
+    /**
      * 备注
      */
     @TableField("REMARK")

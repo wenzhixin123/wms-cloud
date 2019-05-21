@@ -65,6 +65,12 @@ private static final long serialVersionUID=1L;
     private String btnAction;
 
     /**
+     * 图标
+     */
+    @TableField("ICON")
+    private String icon;
+
+    /**
      * 备注
      */
     @TableField("REMARK")
@@ -82,5 +88,9 @@ private static final long serialVersionUID=1L;
     @TableField("CONTROL_WORD")
     private String controlWord;
 
-
+    /**
+     * 按钮序号
+     */
+    @TableField("VIEW_BTN_SEQ")
+    private Double viewBtnSeq;
 }

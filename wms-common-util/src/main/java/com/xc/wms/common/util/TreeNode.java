@@ -1,13 +1,11 @@
-package com.xc.wms.dto;
+package com.xc.wms.common.util;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data

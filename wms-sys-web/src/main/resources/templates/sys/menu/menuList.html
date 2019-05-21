@@ -59,7 +59,12 @@
       }
     }, { name: '类型',headerClass: 'value_col', colClass: 'value_col', style: 'width: 10%',
       render: function(row) {
-        return '<div class="layui-table-cell laytable-cell-1-username">'+(row.menuType=="0"?'菜单组':'1'?'菜单':'2'?'按钮':'')+'</div>'; //列渲染
+        var title = '';
+        if(row.menuType == '0') title = '菜单组';
+        if(row.menuType == '1') title = '菜单';
+        if(row.menuType == '2') title = '按钮';
+
+        return '<div class="layui-table-cell laytable-cell-1-username">'+title+'</div>'; //列渲染
       }
     }, { name: '权限',headerClass: 'value_col', colClass: 'value_col', style: 'width: 10%',
       render: function(row) {
